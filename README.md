@@ -1,6 +1,6 @@
 # single-line-log
 
-Small Node.js module that keeps writing to the same line in the terminal. Very useful when you write progress bars, or a status message during longer operations.
+Small Node.js module that keeps writing to the same line in the console. Very useful when you write progress bars, or a status message during longer operations.
 
 
 ## Installation
@@ -20,6 +20,8 @@ var rs = fs.createReadStream('super-large-file');
 rs.on('data', function(data) {
 	read += data.length;
 	var percentage = Math.floor(100*read/size);
+
+	// Keep writing to the same line in the console
 	log('[' + percentage + '%]', read, 'bytes read');
 });
 ```
