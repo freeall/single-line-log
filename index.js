@@ -1,10 +1,21 @@
-var written = -1;
+var MOVE = new Buffer('1b5b3130303044', 'hex').toString();
+
+var write = process.stdout.write;
+var str;
+
+process.stdout.write = function(data) {
+	if (str && data !== str) {
+		str = null;
+		write.call(this, '\n');
+	}
+	write.apply(this, arguments);
+};
+
 var log = function() {
-	if (process.stdout.bytesWritten === written) process.stdout.moveCursor(0,-1);
-	process.stdout.clearLine();
-	console.log.apply(console, arguments);
-	process.stdout.clearLine();
-	written = process.stdout.bytesWritten;
+	var prev = str || '';
+	str = MOVE+Array.prototype.join.call(arguments, ' ');
+	while (str.length < prev.length) str += ' ';
+	process.stdout.write(str);
 };
 
 module.exports = log;
