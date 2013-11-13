@@ -11,6 +11,10 @@ process.stdout.write = function(data) {
 	write.apply(this, arguments);
 };
 
+process.on('exit', function() {
+	if (str !== null) process.stdout.write('');
+});
+
 var log = function() {
 	var prev = str || '';
 	str = MOVE+Array.prototype.join.call(arguments, ' ');
