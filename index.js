@@ -23,6 +23,9 @@ var log = function() {
 };
 
 module.exports = log;
+module.exports.clear = function() {
+	process.stdout.write('');
+};
 
 if (require.main !== module) return;
 

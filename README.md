@@ -26,6 +26,18 @@ rs.on('data', function(data) {
 });
 ```
 
+## .clear()
+
+Clears the log (i.e., writes a newline).
+
+``` js
+var log = require('single-line-log');
+
+log('Line 1');
+log.clear()
+log('Line 2');
+```
+
 ## License
 
 MIT
