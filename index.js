@@ -1,4 +1,5 @@
-var MOVE = new Buffer('1b5b3130303044', 'hex').toString();
+var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
+var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
 
 var write = process.stdout.write;
 var str;
@@ -17,7 +18,9 @@ process.on('exit', function() {
 
 var log = function() {
 	var prev = str || '';
-	str = MOVE+Array.prototype.join.call(arguments, ' ');
+	var newLines = (str || '').split('\n').length-1;
+	str = Array(newLines+1).join(MOVE_UP);
+	str += MOVE_LEFT+Array.prototype.join.call(arguments, ' ');
 	while (str.length < prev.length) str += ' ';
 	process.stdout.write(str);
 };
