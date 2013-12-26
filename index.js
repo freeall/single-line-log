@@ -1,5 +1,6 @@
 var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
 var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
+var CLEAR_LINE = new Buffer('1b5b304b', 'hex').toString();
 
 var write = process.stdout.write;
 var str;
@@ -16,13 +17,22 @@ process.on('exit', function() {
 	if (str !== null) process.stdout.write('');
 });
 
+var prevLineCount = 0;
 var log = function() {
-	var prev = str || '';
-	var newLines = (str || '').split('\n').length-1;
-	str = Array(newLines+1).join(MOVE_UP);
-	str += MOVE_LEFT+Array.prototype.join.call(arguments, ' ');
-	while (str.length < prev.length) str += ' ';
+	str = '';
+	var nextStr = Array.prototype.join.call(arguments, ' ');
+
+	// Clear screen
+	for (var i=0; i<prevLineCount; i++) {
+		str += MOVE_LEFT + CLEAR_LINE + (i < prevLineCount-1 ? MOVE_UP : '');
+	}
+
+	// Actual log output
+	str += nextStr;
 	process.stdout.write(str);
+
+	// How many lines to remove on next clear screen
+	prevLineCount = nextStr.split('\n').length;
 };
 
 module.exports = log;
@@ -32,8 +42,13 @@ module.exports.clear = function() {
 
 if (require.main !== module) return;
 
-var count=0;
+var i=0;
 setInterval(function() {
-	if (count === 10000) return;
-	log('#'+(count++));
-}, 50);
+	i++;
+	var s = 'line 1 - '+Math.random();
+	if (i < 10) s += ' - '+Math.random();
+	s += '\nline 2 - '+Math.random();
+	if (i<20) s += '\nline 3 - '+Math.random()+'\nline 4 - '+Math.random();
+
+	log(s);
+}, 200);

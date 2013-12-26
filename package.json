@@ -14,7 +14,7 @@
     "cli",
     "shell"
   ],
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": "git://github.com/freeall/single-line-log.git",
   "author": "Tobias Baunbæk <freeall@gmail.com>"
 }
