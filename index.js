@@ -7,10 +7,7 @@ module.exports = function(stream) {
 	var str;
 
 	stream.write = function(data) {
-		if (str && data !== str) {
-			str = null;
-			write.call(this, '\n');
-		}
+		if (str && data !== str) str = null;
 		write.apply(this, arguments);
 	};
 
