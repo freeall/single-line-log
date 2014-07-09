@@ -8,7 +8,7 @@ module.exports = function(stream) {
 
 	stream.write = function(data) {
 		if (str && data !== str) str = null;
-		write.apply(this, arguments);
+		return write.apply(this, arguments);
 	};
 
 	process.on('exit', function() {
