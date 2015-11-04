@@ -11,9 +11,11 @@ module.exports = function(stream) {
 		return write.apply(this, arguments);
 	};
 
-	process.on('exit', function() {
-		if (str !== null) stream.write('');
-	});
+	if (stream === process.stderr || stream === process.stdout) {
+		process.on('exit', function() {
+			if (str !== null) stream.write('');
+		});
+	}
 
 	var prevLineCount = 0;
 	var log = function() {
