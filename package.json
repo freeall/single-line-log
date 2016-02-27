@@ -17,5 +17,8 @@
   "version": "1.0.1",
   "repository": "git://github.com/freeall/single-line-log.git",
   "license": "MIT",
-  "author": "Tobias Baunbæk <freeall@gmail.com>"
+  "author": "Tobias Baunbæk <freeall@gmail.com>",
+  "dependencies": {
+    "string-width": "^1.0.1"
+  }
 }

@@ -1,6 +1,7 @@
 var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
 var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
 var CLEAR_LINE = new Buffer('1b5b304b', 'hex').toString();
+var stringWidth = require('string-width')
 
 module.exports = function(stream) {
 	var write = stream.write;
@@ -32,7 +33,11 @@ module.exports = function(stream) {
 		stream.write(str);
 
 		// How many lines to remove on next clear screen
-		prevLineCount = nextStr.split('\n').length;
+		prevLines = nextStr.split('\n')
+              prevLineCount = prevLines.length
+              for (var i=0; i < prevLines.length; i++) {
+                if (stream.columns < stringWidth(prevLines[i])) prevLineCount += 1
+              }
 	};
 
 	log.clear = function() {
