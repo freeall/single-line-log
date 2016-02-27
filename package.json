@@ -20,5 +20,8 @@
   "author": "Tobias Baunbæk <freeall@gmail.com>",
   "dependencies": {
     "string-width": "^1.0.1"
+  },
+  "scripts": {
+    "test": "node test.js"
   }
 }
