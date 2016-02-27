@@ -33,7 +33,7 @@ module.exports = function(stream) {
 		stream.write(str);
 
 		// How many lines to remove on next clear screen
-		prevLines = nextStr.split('\n');
+		var prevLines = nextStr.split('\n');
 		prevLineCount = prevLines.length;
 		for (var i=0; i < prevLines.length; i++) {
 			if (stream.columns < stringWidth(prevLines[i])) prevLineCount += 1;
