@@ -44,7 +44,7 @@ module.exports = function(stream) {
 		stream.write('');
 	};
 
-	log.keepContent = function() {
+	log.keepOutput = function() {
 		prevLineCount = 0;
 	};
 
