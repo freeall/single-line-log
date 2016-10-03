@@ -44,6 +44,10 @@ module.exports = function(stream) {
 		stream.write('');
 	};
 
+	log.keepOutput = function() {
+		prevLineCount = 0;
+	};
+
 	return log;
 };
 

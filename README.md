@@ -35,11 +35,23 @@ Clears the log (i.e., writes a newline).
 ``` js
 var log = require('single-line-log').stdout;
 
-log('Line 1');
-log.clear();
-log('Line 2');
+log('Line 1'); // Output is `Line 1`
+log.clear(); // Output is ``
+log('Line 2'); // Output is `Line 2`
 ```
 
+## .keepOutput()
+
+Keeps the current output, and begins a new buffer.
+
+``` js
+var log = require('single-line-log').stdout;
+
+log('Line 1\n'); // Output is `Line 1\n`
+log.keepOutput(); // Output is `Line 1\n`
+log('Line 2\n'); // Output is `Line 1\nLine 2\n`
+log('Line 3\n'); // Output is `Line 1\nLine 3\n`
+```
 
 ## .stdout
 
