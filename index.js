@@ -25,7 +25,7 @@ module.exports = function(stream) {
 
 		// Clear screen
 		for (var i=0; i<prevLineCount; i++) {
-			str += MOVE_LEFT + CLEAR_LINE + (i < prevLineCount-1 ? MOVE_UP : '');
+			str += MOVE_LEFT + CLEAR_LINE + (i < prevLineCount ? MOVE_UP : '');
 		}
 
 		// Actual log output
