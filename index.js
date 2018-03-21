@@ -1,6 +1,7 @@
-var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
-var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
-var CLEAR_LINE = new Buffer('1b5b304b', 'hex').toString();
+var bufferFrom = require('buffer-from')
+var MOVE_LEFT = bufferFrom('1b5b3130303044', 'hex').toString();
+var MOVE_UP = bufferFrom('1b5b3141', 'hex').toString();
+var CLEAR_LINE = bufferFrom('1b5b304b', 'hex').toString();
 var stringWidth = require('string-width');
 
 module.exports = function(stream) {
