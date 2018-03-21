@@ -19,6 +19,7 @@
   "license": "MIT",
   "author": "Tobias Baunbæk <freeall@gmail.com>",
   "dependencies": {
+    "buffer-from": "^1.0.0",
     "string-width": "^1.0.1"
   },
   "scripts": {
