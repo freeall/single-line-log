@@ -1,7 +1,6 @@
-var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
-var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
-var CLEAR_LINE = new Buffer('1b5b304b', 'hex').toString();
-// var stringWidth = require('string-width');
+var MOVE_LEFT = Buffer.from('1b5b3130303044', 'hex').toString();
+var MOVE_UP = Buffer.from('1b5b3141', 'hex').toString();
+var CLEAR_LINE = Buffer.from('1b5b304b', 'hex').toString();
 import stringWidth from 'string-width';
 
 export const singleLineLog = function(stream) {
