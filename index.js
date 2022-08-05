@@ -1,9 +1,10 @@
 var MOVE_LEFT = new Buffer('1b5b3130303044', 'hex').toString();
 var MOVE_UP = new Buffer('1b5b3141', 'hex').toString();
 var CLEAR_LINE = new Buffer('1b5b304b', 'hex').toString();
-var stringWidth = require('string-width');
+// var stringWidth = require('string-width');
+import stringWidth from 'string-width';
 
-module.exports = function(stream) {
+export const singleLineLog = function(stream) {
 	var write = stream.write;
 	var str;
 
@@ -47,5 +48,5 @@ module.exports = function(stream) {
 	return log;
 };
 
-module.exports.stdout = module.exports(process.stdout);
-module.exports.stderr = module.exports(process.stderr);
+export const stdout = singleLineLog(process.stdout);
+export const stderr = singleLineLog(process.stderr);
