@@ -10,6 +10,7 @@ Node.js module that keeps writing to the same line in the console (or a stream).
 
 ## Usage
 
+cjs: 
 ``` js
 var log = require('single-line-log').stdout;
 // or pass any stream:
@@ -25,6 +26,24 @@ rs.on('data', function(data) {
 
 	// Keep writing to the same two lines in the console
 	log('Writing to super large file\n[' + percentage + '%]', read, 'bytes read');
+});
+```
+
+
+esm:
+``` js
+import { stdout as logSingleLine } from 'single-line-log';
+
+var read = 0;
+var size = fs.statSync('super-large-file').size;
+
+var rs = fs.createReadStream('super-large-file');
+rs.on('data', function(data) {
+	read += data.length;
+	var percentage = Math.floor(100*read/size);
+
+	// Keep writing to the same two lines in the console
+	logSingleLine('Writing to super large file\n[' + percentage + '%]', read, 'bytes read');
 });
 ```
 
